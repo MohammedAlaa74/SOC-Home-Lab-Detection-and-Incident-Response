@@ -12,20 +12,21 @@ The lab uses a private subnet, 192.168.50.0/24.
   | DC01             |       | PC01             |
   | 192.168.50.10    |       | 192.168.50.20    |
   | Active Directory |       | Windows Endpoint |
-  +------------------+       | Sysmon + Wazuh   |
+  +------------------+       |                  |
                              +------------------+
 
-  +------------------+       +------------------+
-  | Monitoring Host  |       | Kali             |
-  | 192.168.50.30    |       | 192.168.50.40    |
-  | Monitoring only  |       | Authorized tests |
-  +------------------+       +------------------+
+ +------------------+
+ | Wazuh Manager    |
+ | 192.168.50.30    |
+ | Monitoring Host  |  
+ +------------------+         +------------------+
+                              | Kali             |
+                              | 192.168.50.40    |
+                              | Authorized tests |
+                              +------------------+
+      
 
-                 +----------------------+
-                 | Wazuh Manager        |
-                 | Central monitoring   |
-                 | Address: verify      |
-                 +----------------------+
+                
 ```
 
 > The diagram is logical, not a verified physical network map. Confirm the Wazuh manager interface/address and current VM connectivity before replacing the placeholder.
