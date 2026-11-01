@@ -1,0 +1,7 @@
+evidence_id,filename,description,source,collection_status,redaction_status
+PS-01,PS-01-wazuh-alert-92057.png,Wazuh alert 92057 showing rule level agent and timestamp,Wazuh Dashboard,Pending,Not yet reviewed
+PS-02,PS-02-parent-cmd-process.png,Parent cmd.exe Sysmon Event ID 1 process creation details,PC01 Sysmon via Wazuh,Pending,Not yet reviewed
+PS-03,PS-03-child-powershell-encoded-command.png,Child powershell.exe Sysmon Event ID 1 including encoded command line,PC01 Sysmon via Wazuh,Pending,Not yet reviewed
+PS-04,PS-04-parent-child-process-correlation.png,Parent and child process correlation using process GUID fields,Wazuh Dashboard,Pending,Not yet reviewed
+LOG-01,LOG-01-wazuh-alert-92057.json,Sanitized Wazuh alert JSON excerpt,Wazuh alerts export,Pending,Not yet reviewed
+LOG-02,LOG-02-sysmon-process-creation.json,Sanitized Sysmon Event ID 1 excerpt or excerpts,PC01 Sysmon export,Pending,Not yet reviewed
