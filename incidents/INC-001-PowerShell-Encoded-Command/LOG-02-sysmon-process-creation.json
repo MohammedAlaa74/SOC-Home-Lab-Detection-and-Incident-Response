@@ -1,0 +1,32 @@
+{
+  "_index": "wazuh-alerts-4.x-2026.11.01",
+  "_source": {
+    "agent": {"ip": "192.168.50.20", "name": "PC01", "id": "002"},
+    "manager": {"name": "wazuh"},
+    "data": {"win": {"eventdata": {
+      "originalFileName": "PowerShell.EXE",
+      "image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "parentImage": "C:\\Windows\\System32\\cmd.exe",
+      "parentProcessId": "9032",
+      "processId": "1500",
+      "processGuid": "{eab4e03d-4eba-6ae7-9903-000000006300}",
+      "parentProcessGuid": "{eab4e03d-4eba-6ae7-9703-000000006300}",
+      "utcTime": "2026-11-01 14:37:46.095",
+      "commandLine": "powershell.exe -e [REDACTED_BASE64]",
+      "parentCommandLine": "cmd.exe /c powershell.exe -e [REDACTED_BASE64]",
+      "currentDirectory": "[REDACTED_USER_PATH]",
+      "user": "[REDACTED_USER]",
+      "parentUser": "[REDACTED_USER]",
+      "hashes": "SHA1=801262E122DB6A2E758962896F260B55BBD0136A,MD5=2E5A8590CF6848968FC23DE3FA1E25F1,SHA256=9785001B0DCF755EDDB8AF294A373C0B87B2498660F724E76C4D53F9C217C7A3,IMPHASH=3D08F4848535206D772DE145804FF4B6"
+    }, "system": {
+      "eventID": "1",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "systemTime": "2026-11-01T14:37:46.1081815Z",
+      "eventRecordID": "2098025",
+      "computer": "PC01.[REDACTED_DOMAIN]"
+    }}},
+    "rule": {"id": "92032", "level": 3, "description": "Suspicious Windows cmd shell execution", "mitre": {"id": ["T1087", "T1059.003"], "tactic": ["Discovery", "Execution"]}},
+    "timestamp": "2026-11-01T16:38:05.523+0200"
+  },
+  "redaction_notes": "User and domain identity, user profile path, and encoded payload contents are redacted. Process IDs, GUIDs, timestamps, hashes, and detection metadata are retained."
+}
