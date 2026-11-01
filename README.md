@@ -47,7 +47,6 @@ See [INC-001 incident report](incidents/INC-001-PowerShell-Encoded-Command/incid
 | `docs/` | Architecture, topology, and lab environment |
 | `incidents/` | Incident reports and evidence manifests |
 | `detections/` | Sanitized detection rules and telemetry configuration |
-| `evidence/screenshots/` | Redacted screenshots grouped by incident |
 | `evidence/sanitized-logs/` | Sanitized supporting event data |
 | `reports/` | Test results and detection coverage |
 
