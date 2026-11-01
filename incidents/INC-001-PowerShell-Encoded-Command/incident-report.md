@@ -16,7 +16,7 @@
 | Alert severity | Level 12 |
 | Endpoint telemetry | Sysmon Event ID 1 |
 | MITRE ATT&CK | T1059.001 — PowerShell |
-| Status | Detection observed; screenshot evidence committed; sanitized log evidence pending |
+| Status | Detection observed; screenshot and sanitized JSON evidence committed |
 
 ## Executive summary
 
@@ -73,17 +73,17 @@ All screenshot evidence is stored alongside this incident report in this directo
 | PS-02 | [Screenshot 2026-11-01 195736.png](Screenshot%202026-11-01%20195736.png) | Parent cmd.exe process event | Committed |
 | PS-03 | [Screenshot 2026-11-01 195946.png](Screenshot%202026-11-01%20195946.png) | Child PowerShell event with encoded command line and hashes | Committed |
 | PS-04 | [Screenshot 2026-11-01 195804.png](Screenshot%202026-11-01%20195804.png) | Process event details containing parent/process identifiers | Committed; full parent-child GUID correlation still needs validation |
-| LOG-01 | LOG-01-wazuh-alert-92057.json | Sanitized Wazuh alert JSON excerpt | Pending |
-| LOG-02 | LOG-02-sysmon-process-creation.json | Sanitized Sysmon Event ID 1 excerpt(s) | Pending |
+| LOG-01 | [LOG-01-wazuh-alert-92057.json](LOG-01-wazuh-alert-92057.json) | Sanitized Wazuh alert / Sysmon cmd.exe event excerpt | Committed |
+| LOG-02 | [LOG-02-sysmon-process-creation.json](LOG-02-sysmon-process-creation.json) | Sanitized Sysmon Event ID 1 PowerShell child event excerpt | Committed |
 
 ## Limitations
 
 - Four screenshot files have been committed in this incident directory. They are not duplicated under a separate `evidence/screenshots/INC-001` directory.
 - Screenshots contain some lab identity/path details; review and redact them before treating this public repository as fully sanitized.
 - The screenshot set does not yet prove a complete side-by-side parent/child GUID correlation. Validate ProcessGuid and ParentProcessGuid using exported events.
-- Original JSON exports should be sanitized and attached before evidence collection is considered complete.
+- Sanitized JSON excerpts are committed. Original raw exports are intentionally not published because they contain user, domain, local path, and encoded payload data.
 - This report does not claim successful containment or eradication.
-- The observed user context and process identifiers should be rechecked against the raw exported event before public release.
+- The public JSON excerpts retain process identifiers, GUIDs, timestamps, hashes, and detection metadata while redacting user/domain identity, local profile paths, and encoded payload contents.
 
 ## Lessons and follow-up
 
