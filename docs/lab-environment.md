@@ -8,10 +8,9 @@ This document describes the isolated SOC home lab used for controlled detection 
 
 | System | Role | Address | Notes |
 |---|---|---:|---|
-| Wazuh | SIEM manager and monitoring server | Not stated here | Wazuh manager v4.14.9 was reported active after configuration correction |
 | DC01 | Active Directory domain controller | 192.168.50.10 | Windows Server lab system |
 | PC01 | Windows endpoint under monitoring | 192.168.50.20 | Wazuh agent ID 002; Windows 10; Sysmon telemetry |
-| Monitoring host | Monitoring/supporting services | 192.168.50.30 | Monitoring only; exclude from attack simulation and containment tests |
+| Wazuh | SIEM manager and monitoring server | 192.168.50.30 | Wazuh manager v4.14.9 was reported active after configuration correction |
 | Kali | Authorized test workstation | 192.168.50.40 | Used for approved lab simulations where applicable |
 
 ## Network
