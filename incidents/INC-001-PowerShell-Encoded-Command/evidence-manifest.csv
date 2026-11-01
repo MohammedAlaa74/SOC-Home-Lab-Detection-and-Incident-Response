@@ -1,7 +1,7 @@
 evidence_id,filename,description,source,collection_status,redaction_status
-PS-01,PS-01-wazuh-alert-92057.png,Wazuh alert 92057 showing rule level agent and timestamp,Wazuh Dashboard,Pending,Not yet reviewed
-PS-02,PS-02-parent-cmd-process.png,Parent cmd.exe Sysmon Event ID 1 process creation details,PC01 Sysmon via Wazuh,Pending,Not yet reviewed
-PS-03,PS-03-child-powershell-encoded-command.png,Child powershell.exe Sysmon Event ID 1 including encoded command line,PC01 Sysmon via Wazuh,Pending,Not yet reviewed
-PS-04,PS-04-parent-child-process-correlation.png,Parent and child process correlation using process GUID fields,Wazuh Dashboard,Pending,Not yet reviewed
-LOG-01,LOG-01-wazuh-alert-92057.json,Sanitized Wazuh alert JSON excerpt,Wazuh alerts export,Pending,Not yet reviewed
-LOG-02,LOG-02-sysmon-process-creation.json,Sanitized Sysmon Event ID 1 excerpt or excerpts,PC01 Sysmon export,Pending,Not yet reviewed
+PS-01,PS-01-wazuh-alert-92057.png,Wazuh alert 92057 showing rule level agent and timestamp,Wazuh Dashboard,Received in chat; not committed to repository,Review before public upload
+PS-02,PS-02-parent-cmd-process.png,Sysmon Event ID 1 for cmd.exe including parent image and process identifiers,PC01 Sysmon via Wazuh,Received in chat; not committed to repository,Contains domain or user and host details; sanitize before public upload
+PS-03,PS-03-child-powershell-encoded-command.png,Sysmon Event ID 1 for encoded PowerShell command line and file hashes,PC01 Sysmon via Wazuh,Received in chat; not committed to repository,Contains user path and encoded command; inspect and sanitize before public upload
+PS-04,PS-04-parent-child-process-correlation.png,Side-by-side correlation of parent and child process GUID and PID fields,Wazuh Dashboard,Pending; not present among received screenshots,Not yet collected
+LOG-01,LOG-01-wazuh-alert-92057.json,Sanitized Wazuh alert JSON excerpt,Wazuh alerts export,Pending,Not yet collected
+LOG-02,LOG-02-sysmon-process-creation.json,Sanitized Sysmon Event ID 1 excerpt or excerpts,PC01 Sysmon export,Pending,Not yet collected
