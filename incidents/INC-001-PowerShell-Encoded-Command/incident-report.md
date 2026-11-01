@@ -48,7 +48,7 @@ The recorded event timestamp was approximately 2026-11-01 16:38 local time (Sysm
 
 1. Review the Wazuh alert and confirm rule ID, level, agent, and event timestamp.
 2. Inspect Sysmon Event ID 1 for the process image, command line, user, process GUID, parent image, parent PID, and parent process GUID.
-3. Correlate the parent and child process records using process GUID fields and timestamps.
+3. Correlate the parent and child records: the cmd.exe ProcessGuid in LOG-01 matches the PowerShell ParentProcessGuid in LOG-02; the child ParentProcessId (9032) also matches the cmd.exe ProcessId.
 4. Decode the Base64 command line in a safe analysis environment; do not execute the decoded content.
 5. Compare the activity with the documented Atomic Red Team test execution window.
 6. Record the affected host and user context. Because execution was local, do not assign a remote source IP.
@@ -72,7 +72,7 @@ All screenshot evidence is stored alongside this incident report in this directo
 | PS-01 | [Screenshot 2026-11-01 195813.png](Screenshot%202026-11-01%20195813.png) | Wazuh alert 92057 details | Committed |
 | PS-02 | [Screenshot 2026-11-01 195736.png](Screenshot%202026-11-01%20195736.png) | Parent cmd.exe process event | Committed |
 | PS-03 | [Screenshot 2026-11-01 195946.png](Screenshot%202026-11-01%20195946.png) | Child PowerShell event with encoded command line and hashes | Committed |
-| PS-04 | [Screenshot 2026-11-01 195804.png](Screenshot%202026-11-01%20195804.png) | Process event details containing parent/process identifiers | Committed; full parent-child GUID correlation still needs validation |
+| PS-04 | [Screenshot 2026-11-01 195804.png](Screenshot%202026-11-01%20195804.png) | Process event details containing parent/process identifiers | Committed; GUID relationship corroborated by LOG-01 and LOG-02 |
 | LOG-01 | [LOG-01-wazuh-alert-92057.json](LOG-01-wazuh-alert-92057.json) | Sanitized Wazuh alert / Sysmon cmd.exe event excerpt | Committed |
 | LOG-02 | [LOG-02-sysmon-process-creation.json](LOG-02-sysmon-process-creation.json) | Sanitized Sysmon Event ID 1 PowerShell child event excerpt | Committed |
 
@@ -80,7 +80,7 @@ All screenshot evidence is stored alongside this incident report in this directo
 
 - Four screenshot files have been committed in this incident directory. They are not duplicated under a separate `evidence/screenshots/INC-001` directory.
 - Screenshots contain some lab identity/path details; review and redact them before treating this public repository as fully sanitized.
-- The screenshot set does not yet prove a complete side-by-side parent/child GUID correlation. Validate ProcessGuid and ParentProcessGuid using exported events.
+- The parent-child relationship is corroborated by the exported events: LOG-01 cmd.exe ProcessGuid `{eab4e03d-4eba-6ae7-9703-000000006300}` equals LOG-02 PowerShell ParentProcessGuid `{eab4e03d-4eba-6ae7-9703-000000006300}`. LOG-02 PowerShell ProcessGuid is `{eab4e03d-4eba-6ae7-9903-000000006300}`; its ParentProcessId is 9032, matching the cmd.exe ProcessId in LOG-01.
 - Sanitized JSON excerpts are committed. Original raw exports are intentionally not published because they contain user, domain, local path, and encoded payload data.
 - This report does not claim successful containment or eradication.
 - The public JSON excerpts retain process identifiers, GUIDs, timestamps, hashes, and detection metadata while redacting user/domain identity, local profile paths, and encoded payload contents.
@@ -90,4 +90,4 @@ All screenshot evidence is stored alongside this incident report in this directo
 - Retain process creation telemetry with command-line and parent-process context.
 - Preserve process GUIDs to support reliable parent/child correlation.
 - Keep simulation timestamps so analysts can distinguish authorized tests from unrelated activity.
-- Add sanitized Wazuh and Sysmon JSON excerpts, then confirm parent/child correlation before marking the investigation fully evidenced.
+- Decode and review the original Base64 payload in a safe, non-executing analysis workflow; record the decoded behavior without publishing the original payload.
