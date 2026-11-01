@@ -16,7 +16,7 @@
 | Alert severity | Level 12 |
 | Endpoint telemetry | Sysmon Event ID 1 |
 | MITRE ATT&CK | T1059.001 — PowerShell |
-| Status | Detection observed; investigation documentation in progress |
+| Status | Detection observed; screenshot evidence committed; sanitized log evidence pending |
 
 ## Executive summary
 
@@ -65,21 +65,23 @@ The alert and Sysmon process-creation evidence support the conclusion that encod
 
 ## Evidence references
 
-See [evidence-manifest.csv](evidence-manifest.csv) for the planned screenshot and log evidence identifiers.
+All screenshot evidence is stored alongside this incident report in this directory. See [evidence-manifest.csv](evidence-manifest.csv) for filenames, evidence IDs, collection state, and redaction notes.
 
-| Evidence ID | Description | Collection state |
-|---|---|---|
-| PS-01 | Wazuh alert 92057 with full rule and agent details | Pending attachment |
-| PS-02 | Parent cmd.exe process creation event | Pending attachment |
-| PS-03 | Child powershell.exe event and encoded command line | Pending attachment |
-| PS-04 | Parent/child process correlation using process GUIDs | Pending attachment |
-| LOG-01 | Sanitized Wazuh alert JSON excerpt | Pending attachment |
-| LOG-02 | Sanitized Sysmon Event ID 1 excerpt(s) | Pending attachment |
+| Evidence ID | Screenshot / log | Description | Collection state |
+|---|---|---|---|
+| PS-01 | [Screenshot 2026-11-01 195813.png](Screenshot%202026-11-01%20195813.png) | Wazuh alert 92057 details | Committed |
+| PS-02 | [Screenshot 2026-11-01 195736.png](Screenshot%202026-11-01%20195736.png) | Parent cmd.exe process event | Committed |
+| PS-03 | [Screenshot 2026-11-01 195946.png](Screenshot%202026-11-01%20195946.png) | Child PowerShell event with encoded command line and hashes | Committed |
+| PS-04 | [Screenshot 2026-11-01 195804.png](Screenshot%202026-11-01%20195804.png) | Process event details containing parent/process identifiers | Committed; full parent-child GUID correlation still needs validation |
+| LOG-01 | LOG-01-wazuh-alert-92057.json | Sanitized Wazuh alert JSON excerpt | Pending |
+| LOG-02 | LOG-02-sysmon-process-creation.json | Sanitized Sysmon Event ID 1 excerpt(s) | Pending |
 
 ## Limitations
 
-- Screenshot files have not yet been committed to this repository.
-- Original JSON exports should be sanitized and attached before this report is considered fully evidenced.
+- Four screenshot files have been committed in this incident directory. They are not duplicated under a separate `evidence/screenshots/INC-001` directory.
+- Screenshots contain some lab identity/path details; review and redact them before treating this public repository as fully sanitized.
+- The screenshot set does not yet prove a complete side-by-side parent/child GUID correlation. Validate ProcessGuid and ParentProcessGuid using exported events.
+- Original JSON exports should be sanitized and attached before evidence collection is considered complete.
 - This report does not claim successful containment or eradication.
 - The observed user context and process identifiers should be rechecked against the raw exported event before public release.
 
@@ -88,4 +90,4 @@ See [evidence-manifest.csv](evidence-manifest.csv) for the planned screenshot an
 - Retain process creation telemetry with command-line and parent-process context.
 - Preserve process GUIDs to support reliable parent/child correlation.
 - Keep simulation timestamps so analysts can distinguish authorized tests from unrelated activity.
-- Add the redacted screenshots and sanitized event excerpts before marking evidence collection complete.
+- Add sanitized Wazuh and Sysmon JSON excerpts, then confirm parent/child correlation before marking the investigation fully evidenced.
