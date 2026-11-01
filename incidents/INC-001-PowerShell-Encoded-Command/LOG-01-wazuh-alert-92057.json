@@ -1,0 +1,31 @@
+{
+  "_index": "wazuh-alerts-4.x-2026.11.01",
+  "_source": {
+    "agent": {"ip": "192.168.50.20", "name": "PC01", "id": "002"},
+    "manager": {"name": "wazuh"},
+    "data": {"win": {"eventdata": {
+      "originalFileName": "Cmd.Exe",
+      "image": "C:\\Windows\\System32\\cmd.exe",
+      "parentImage": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "parentProcessId": "2232",
+      "processId": "9032",
+      "processGuid": "{eab4e03d-4eba-6ae7-9703-000000006300}",
+      "parentProcessGuid": "{eab4e03d-c997-6ae6-8501-000000006300}",
+      "utcTime": "2026-11-01 14:37:46.036",
+      "commandLine": "cmd.exe /c powershell.exe -e [REDACTED_BASE64]",
+      "currentDirectory": "[REDACTED_USER_PATH]",
+      "user": "[REDACTED_USER]",
+      "parentUser": "[REDACTED_USER]",
+      "hashes": "SHA1=DF79C86FDD11B9CCB89148458E509F879C72566C,MD5=2B40C98ED0F7A1D3B091A3E8353132DC,SHA256=BADF4752413CB0CBDC03FB95820CA167F0CDC63B597CCDB5EF43111180E088B0,IMPHASH=272245E2988E1E430500B852C4FB5E18"
+    }, "system": {
+      "eventID": "1",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "systemTime": "2026-11-01T14:37:46.0609208Z",
+      "eventRecordID": "2098021",
+      "computer": "PC01.[REDACTED_DOMAIN]"
+    }}},
+    "rule": {"id": "92057", "level": 12, "description": "Powershell.exe spawned a powershell process which executed a base64 encoded command", "mitre": {"id": ["T1059.001"], "tactic": ["Execution"]}},
+    "timestamp": "2026-11-01T16:38:05.414+0200"
+  },
+  "redaction_notes": "User and domain identity, user profile path, and encoded payload contents are redacted. Process IDs, GUIDs, timestamps, hashes, and detection metadata are retained."
+}
