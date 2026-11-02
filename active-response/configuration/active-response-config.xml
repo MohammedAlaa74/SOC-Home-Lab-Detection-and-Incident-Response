@@ -1,4 +1,4 @@
-<!-- Sanitized excerpts from /var/ossec/etc/ossec.conf. No secrets or integrations included. -->
+
 <active-response>
   <disabled>no</disabled>
   <command>soc-firewall-drop</command>
