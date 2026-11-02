@@ -24,11 +24,14 @@ The evidence supports repeated failed network authentication attempts and a Wazu
 ## Evidence files
 - `correlation-alert-110503.json` — sanitized Wazuh correlation alert.
 - `rule-110503.xml` — detection rule configuration.
-- Screenshots will be added directly to this incident folder (no separate screenshots directory):
-  - `Screenshot_01_Failed_Logons.png`
-  - `Screenshot_02_Event_Details.png`
-  - `Screenshot_03_Correlation_110503.png`
-  - `Screenshot_04_Account_Context.png`
+- Six screenshot files are now present directly in this incident folder:
+  - `Screenshot 2026-11-01 204738.png`
+  - `Screenshot 2026-11-02 133023.png`
+  - `Screenshot 2026-11-02 133438.png`
+  - `Screenshot 2026-11-02 133701.png`
+  - `Screenshot 2026-11-02 134051.png`
+  - `Screenshot 2026-11-02 134106.png`
+- The screenshot files are recorded in `evidence-manifest.csv` as uploaded; their exact semantic mapping to Failed Logons, Event Details, Correlation, and Account Context remains pending visual review.
 
 ## Current status
-Detection evidence and rule configuration are committed. Screenshot evidence and account-context evidence remain pending user upload. No claim of successful authentication or endpoint compromise is made.
+Detection evidence, rule configuration, and six screenshot files are committed. Screenshot content classification and confirmation of the Account Context evidence remain pending visual review. No claim of successful authentication or endpoint compromise is made.
