@@ -1,0 +1,9 @@
+Evidence ID,File,Description,Status
+AR-01,active-response/evidence/AR-01-linux-add.png,Linux manager receives add and logs source IP,Pending upload
+AR-02,active-response/evidence/AR-02-linux-blocked-firewall.png,Manager firewall shows script-owned DROP rule during timeout,Pending capture
+AR-03,active-response/evidence/AR-03-linux-delete.png,Linux manager receives delete after timeout,Pending upload
+AR-04,active-response/evidence/AR-04-linux-unblocked-firewall.png,Manager firewall shows script-owned DROP rule removed,Pending capture
+AR-05,active-response/evidence/AR-05-pc01-response.png,PC01 endpoint-side Active Response execution log,Not verified
+AR-06,active-response/evidence/AR-06-pc01-firewall.png,PC01 Windows Firewall rule before and after timeout,Not verified
+AR-07,active-response/evidence/AR-07-dc01-response.png,DC01 endpoint-side Active Response execution log,Not verified
+AR-08,active-response/evidence/AR-08-dc01-firewall.png,DC01 Windows Firewall rule before and after timeout,Not verified
