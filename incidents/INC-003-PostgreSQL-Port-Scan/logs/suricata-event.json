@@ -1,0 +1,59 @@
+{
+  "evidence_id": "LOG-01",
+  "sanitization": {
+    "note": "RFC 5737 TEST-NET addresses substituted for private lab IPs for public repository publication.",
+    "source_ip": "198.51.100.40",
+    "destination_ip": "203.0.113.20"
+  },
+  "timestamp": "2026-11-01T16:14:17.019246+0200",
+  "event_type": "alert",
+  "src_ip": "198.51.100.40",
+  "src_port": 56129,
+  "dest_ip": "203.0.113.20",
+  "dest_port": 5432,
+  "proto": "TCP",
+  "in_iface": "ens33",
+  "alert": {
+    "action": "allowed",
+    "gid": 1,
+    "signature_id": 2010939,
+    "rev": 3,
+    "signature": "ET SCAN Suspicious inbound to PostgreSQL port 5432",
+    "category": "Potentially Bad Traffic",
+    "severity": 2,
+    "metadata": {
+      "confidence": [
+        "Medium"
+      ],
+      "signature_severity": [
+        "Informational"
+      ],
+      "created_at": [
+        "2010_07_30"
+      ],
+      "updated_at": [
+        "2019_07_26"
+      ]
+    }
+  },
+  "flow": {
+    "pkts_toserver": 1,
+    "pkts_toclient": 0,
+    "bytes_toserver": 60,
+    "bytes_toclient": 0,
+    "start": "2026-11-01T16:14:17.019246+0200"
+  },
+  "wazuh": {
+    "agent_id": "000",
+    "agent_name": "wazuh",
+    "rule_id": "110501",
+    "rule_level": 8,
+    "rule_firedtimes": 5,
+    "rule_description": "SOC: Suricata detected PostgreSQL port scan from sanitized source to sanitized destination",
+    "mitre_technique": "T1046",
+    "location": "/var/log/suricata/eve.json",
+    "decoder": "json",
+    "alert_id": "1793542458.6544817",
+    "index": "wazuh-alerts-4.x-2026.11.01"
+  }
+}
