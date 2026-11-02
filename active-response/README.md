@@ -23,6 +23,14 @@ The manager configuration defines `netsh` response entries for DC01 (agent 001),
 
 The Linux manager logs include notices that `netsh.exe` is not present on the Linux manager. This is expected for a Windows executable on Linux and does not establish endpoint success or failure. Windows endpoint-side logs and before/after firewall-rule evidence are still required.
 
+## Script source review
+
+- `scripts/soc-firewall-drop.py` is now committed from the complete source pasted for review.
+- The manager SHA256 recorded from the host remains `951374b7dc8c4471769c9c619d6fbbe8a7941fc07009777381911a29b0807b91`. The pasted chat text was not byte-for-byte hashed against the host file, so this repository commit must not be represented as cryptographically verified to match that host hash until `sha256sum` is checked again on the host.
+- The script implements the Wazuh 4.x `add` / `delete` protocol and the `check_keys` handshake on `add`. Wazuh documentation confirms this handshake is required for stateful timeout/reversal.
+- Review note: `find_source()` recursively accepts several generic IP field names, including `ipAddress`; before production use, narrow extraction to the actual Wazuh alert source-IP fields used by rules 110502/110503 so a destination or unrelated nested IP cannot be selected accidentally.
+- Review note: `COMMENT` is fixed to `WAZUH_AR_110502` although the command is attached to both rules 110502 and 110503. This is not itself a failure, but the comment should be renamed to a neutral identifier (for example `WAZUH_AR_SOC_FIREWALL_DROP`) if you want firewall-state evidence to clearly identify blocks from both triggers.
+
 ## Repository contents
 
 - `configuration/command-config.xml`: sanitized command declaration.
@@ -34,7 +42,7 @@ The Linux manager logs include notices that `netsh.exe` is not present on the Li
 
 ## Remaining items
 
-1. Add the full manager-side `soc-firewall-drop.py` source after copying it from the actual host and verifying the SHA256 above. The source is not reconstructed from a partial excerpt.
+1. Re-run `sha256sum /var/ossec/active-response/bin/soc-firewall-drop.py` on the manager and compare it with the recorded hash above; then compare the deployed file with the committed source if byte-for-byte provenance is required.
 2. Add Linux firewall-state evidence while blocked and after timeout.
 3. Add PC01 and DC01 endpoint-side response logs and Windows Firewall before/after evidence.
 4. Review screenshots and mark manifest entries PASS only when their contents support the claim.
