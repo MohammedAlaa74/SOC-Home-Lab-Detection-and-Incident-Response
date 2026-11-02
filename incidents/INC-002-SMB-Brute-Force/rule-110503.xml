@@ -1,0 +1,9 @@
+<rule id="110503" level="10" frequency="5" timeframe="120">
+    <if_matched_sid>60122</if_matched_sid>
+    <same_field>win.eventdata.ipAddress</same_field>
+    <description>SOC: Possible Brute Force - 5 failed logons from same source IP within 120 seconds</description>
+    <mitre>
+      <id>T1110</id>
+    </mitre>
+    <group>soc_detection,authentication_failed,brute_force,high_confidence,</group>
+  </rule>
