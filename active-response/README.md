@@ -1,6 +1,6 @@
 # Wazuh Active Response
 
-This section documents the Active Response implementation in the SOC home lab.
+This section documents the Active Response implementation in the SOC home lab. It separates manager-side execution evidence from endpoint-side containment claims.
 
 ## Confirmed manager-side configuration
 
@@ -13,21 +13,30 @@ This section documents the Active Response implementation in the SOC home lab.
 
 ## Lab-side observations
 
-The manager's `active-responses.log` excerpts supplied during development show successful `add` / `BLOCKED` and `delete` / `UNBLOCKED` log sequences for source `192.168.50.40`.
+The manager's `active-responses.log` excerpts show repeated `add` / `BLOCKED` and `delete` / `UNBLOCKED` log sequences for source `192.168.50.40`.
 
-This confirms the manager-side script flow was logged. For a stronger firewall-state claim, retain corresponding `iptables` / `ip6tables` inspection output captured while the block was active and after deletion.
+This supports the manager-side script execution and logging path. Firewall-state evidence from `iptables` / `ip6tables` during and after the timeout is still needed to independently verify kernel firewall state.
 
 ## Windows response status
 
-The manager configuration also defines `netsh` response entries for DC01 (agent 001), PC01 (agent 002), and local response for rule 110503. These are configuration entries, not proof that Windows Firewall was changed. Windows endpoint logs and before/after firewall-rule evidence are still required.
+The manager configuration defines `netsh` response entries for DC01 (agent 001), PC01 (agent 002), and a local response for rule 110503. These are dispatch declarations, not proof that Windows Firewall was changed.
 
-## Files
+The Linux manager logs include notices that `netsh.exe` is not present on the Linux manager. This is expected for a Windows executable on Linux and does not establish endpoint success or failure. Windows endpoint-side logs and before/after firewall-rule evidence are still required.
+
+## Repository contents
 
 - `configuration/command-config.xml`: sanitized command declaration.
-- `configuration/active-response-config.xml`: manager-side response blocks.
-- `configuration/windows-netsh-config.xml`: Windows dispatch declarations.
-- `docs/validation.md`: observed results and limitations.
-- `docs/test-plan.md`: repeatable evidence checklist.
-- `evidence-manifest.csv`: pending evidence inventory.
+- `configuration/active-response-config.xml`: manager-side response blocks for rules 110502 and 110503.
+- `configuration/windows-netsh-config.xml`: sanitized Windows dispatch declarations.
+- `docs/validation.md`: observed results, script hash, and limitations.
+- `docs/test-plan.md`: repeatable validation checklist.
+- `evidence-manifest.csv`: evidence inventory and status.
 
-The complete Python script is intentionally not included in this commit because only its SHA256 and a partial code excerpt have been supplied in this conversation. Add the full file from the lab manager after review and hash verification.
+## Remaining items
+
+1. Add the full manager-side `soc-firewall-drop.py` source after copying it from the actual host and verifying the SHA256 above. The source is not reconstructed from a partial excerpt.
+2. Add Linux firewall-state evidence while blocked and after timeout.
+3. Add PC01 and DC01 endpoint-side response logs and Windows Firewall before/after evidence.
+4. Review screenshots and mark manifest entries PASS only when their contents support the claim.
+
+Never commit the full `ossec.conf`, Slack webhook URLs, tokens, passwords, private keys, or unredacted raw logs.
