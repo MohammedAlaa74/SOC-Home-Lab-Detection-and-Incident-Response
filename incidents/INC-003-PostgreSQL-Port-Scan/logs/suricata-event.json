@@ -1,158 +1,164 @@
-[
-  {
-    "evidence_id": "LOG-01",
-    "sanitization": {
-      "note": "RFC 5737 TEST-NET addresses substituted for private lab IPs for public repository publication.",
-      "source_ip": "198.51.100.40",
-      "destination_ip": "203.0.113.20"
-    },
-    "timestamp": "2026-11-01T16:14:13.479520+0200",
-    "flow_id": 618283245326624,
-    "event_type": "alert",
-    "in_iface": "ens33",
-    "src_ip": "198.51.100.40",
-    "src_port": 57369,
-    "dest_ip": "203.0.113.20",
-    "dest_port": 5432,
-    "proto": "TCP",
-    "alert": {
-      "action": "allowed",
-      "gid": 1,
-      "signature_id": 2010939,
-      "rev": 3,
-      "signature": "ET SCAN Suspicious inbound to PostgreSQL port 5432",
-      "category": "Potentially Bad Traffic",
-      "severity": 2,
-      "metadata": {
-        "confidence": ["Medium"],
-        "created_at": ["2010_07_30"],
-        "signature_severity": ["Informational"],
-        "updated_at": ["2019_07_26"]
-      }
-    },
-    "flow": {
-      "pkts_toserver": 1,
-      "pkts_toclient": 0,
-      "bytes_toserver": 60,
-      "bytes_toclient": 0,
-      "start": "2026-11-01T16:14:13.479520+0200"
+{
+  "timestamp": "2026-11-01T16:14:13.479520+0200",
+  "flow_id": 618283245326624,
+  "in_iface": "ens33",
+  "event_type": "alert",
+  "src_ip": "192.168.50.40",
+  "src_port": 57369,
+  "dest_ip": "192.168.50.20",
+  "dest_port": 5432,
+  "proto": "TCP",
+  "alert": {
+    "action": "allowed",
+    "gid": 1,
+    "signature_id": 2010939,
+    "rev": 3,
+    "signature": "ET SCAN Suspicious inbound to PostgreSQL port 5432",
+    "category": "Potentially Bad Traffic",
+    "severity": 2,
+    "metadata": {
+      "confidence": [
+        "Medium"
+      ],
+      "created_at": [
+        "2010_07_30"
+      ],
+      "signature_severity": [
+        "Informational"
+      ],
+      "updated_at": [
+        "2019_07_26"
+      ]
     }
   },
-  {
-    "evidence_id": "LOG-01",
-    "sanitization": {
-      "note": "RFC 5737 TEST-NET addresses substituted for private lab IPs for public repository publication.",
-      "source_ip": "198.51.100.40",
-      "destination_ip": "203.0.113.20"
-    },
-    "timestamp": "2026-11-01T16:14:13.579198+0200",
-    "flow_id": 535678139356798,
-    "event_type": "alert",
-    "in_iface": "ens33",
-    "src_ip": "198.51.100.40",
-    "src_port": 57371,
-    "dest_ip": "203.0.113.20",
-    "dest_port": 5432,
-    "proto": "TCP",
-    "alert": {
-      "action": "allowed",
-      "gid": 1,
-      "signature_id": 2010939,
-      "rev": 3,
-      "signature": "ET SCAN Suspicious inbound to PostgreSQL port 5432",
-      "category": "Potentially Bad Traffic",
-      "severity": 2,
-      "metadata": {
-        "confidence": ["Medium"],
-        "created_at": ["2010_07_30"],
-        "signature_severity": ["Informational"],
-        "updated_at": ["2019_07_26"]
-      }
-    },
-    "flow": {
-      "pkts_toserver": 1,
-      "pkts_toclient": 0,
-      "bytes_toserver": 60,
-      "bytes_toclient": 0,
-      "start": "2026-11-01T16:14:13.579198+0200"
-    }
-  },
-  {
-    "evidence_id": "LOG-01",
-    "sanitization": {
-      "note": "RFC 5737 TEST-NET addresses substituted for private lab IPs for public repository publication.",
-      "source_ip": "198.51.100.40",
-      "destination_ip": "203.0.113.20"
-    },
-    "timestamp": "2026-11-01T16:14:16.919013+0200",
-    "flow_id": 815935492982245,
-    "event_type": "alert",
-    "in_iface": "ens33",
-    "src_ip": "198.51.100.40",
-    "src_port": 56127,
-    "dest_ip": "203.0.113.20",
-    "dest_port": 5432,
-    "proto": "TCP",
-    "alert": {
-      "action": "allowed",
-      "gid": 1,
-      "signature_id": 2010939,
-      "rev": 3,
-      "signature": "ET SCAN Suspicious inbound to PostgreSQL port 5432",
-      "category": "Potentially Bad Traffic",
-      "severity": 2,
-      "metadata": {
-        "confidence": ["Medium"],
-        "created_at": ["2010_07_30"],
-        "signature_severity": ["Informational"],
-        "updated_at": ["2019_07_26"]
-      }
-    },
-    "flow": {
-      "pkts_toserver": 1,
-      "pkts_toclient": 0,
-      "bytes_toserver": 60,
-      "bytes_toclient": 0,
-      "start": "2026-11-01T16:14:16.919013+0200"
-    }
-  },
-  {
-    "evidence_id": "LOG-01",
-    "sanitization": {
-      "note": "RFC 5737 TEST-NET addresses substituted for private lab IPs for public repository publication.",
-      "source_ip": "198.51.100.40",
-      "destination_ip": "203.0.113.20"
-    },
-    "timestamp": "2026-11-01T16:14:17.019246+0200",
-    "flow_id": 655533496945454,
-    "event_type": "alert",
-    "in_iface": "ens33",
-    "src_ip": "198.51.100.40",
-    "src_port": 56129,
-    "dest_ip": "203.0.113.20",
-    "dest_port": 5432,
-    "proto": "TCP",
-    "alert": {
-      "action": "allowed",
-      "gid": 1,
-      "signature_id": 2010939,
-      "rev": 3,
-      "signature": "ET SCAN Suspicious inbound to PostgreSQL port 5432",
-      "category": "Potentially Bad Traffic",
-      "severity": 2,
-      "metadata": {
-        "confidence": ["Medium"],
-        "created_at": ["2010_07_30"],
-        "signature_severity": ["Informational"],
-        "updated_at": ["2019_07_26"]
-      }
-    },
-    "flow": {
-      "pkts_toserver": 1,
-      "pkts_toclient": 0,
-      "bytes_toserver": 60,
-      "bytes_toclient": 0,
-      "start": "2026-11-01T16:14:17.019246+0200"
-    }
+  "flow": {
+    "pkts_toserver": 1,
+    "pkts_toclient": 0,
+    "bytes_toserver": 60,
+    "bytes_toclient": 0,
+    "start": "2026-11-01T16:14:13.479520+0200"
   }
-]
+}
+{
+  "timestamp": "2026-11-01T16:14:13.579198+0200",
+  "flow_id": 535678139356798,
+  "in_iface": "ens33",
+  "event_type": "alert",
+  "src_ip": "192.168.50.40",
+  "src_port": 57371,
+  "dest_ip": "192.168.50.20",
+  "dest_port": 5432,
+  "proto": "TCP",
+  "alert": {
+    "action": "allowed",
+    "gid": 1,
+    "signature_id": 2010939,
+    "rev": 3,
+    "signature": "ET SCAN Suspicious inbound to PostgreSQL port 5432",
+    "category": "Potentially Bad Traffic",
+    "severity": 2,
+    "metadata": {
+      "confidence": [
+        "Medium"
+      ],
+      "created_at": [
+        "2010_07_30"
+      ],
+      "signature_severity": [
+        "Informational"
+      ],
+      "updated_at": [
+        "2019_07_26"
+      ]
+    }
+  },
+  "flow": {
+    "pkts_toserver": 1,
+    "pkts_toclient": 0,
+    "bytes_toserver": 60,
+    "bytes_toclient": 0,
+    "start": "2026-11-01T16:14:13.579198+0200"
+  }
+}
+{
+  "timestamp": "2026-11-01T16:14:16.919013+0200",
+  "flow_id": 815935492982245,
+  "in_iface": "ens33",
+  "event_type": "alert",
+  "src_ip": "192.168.50.40",
+  "src_port": 56127,
+  "dest_ip": "192.168.50.20",
+  "dest_port": 5432,
+  "proto": "TCP",
+  "alert": {
+    "action": "allowed",
+    "gid": 1,
+    "signature_id": 2010939,
+    "rev": 3,
+    "signature": "ET SCAN Suspicious inbound to PostgreSQL port 5432",
+    "category": "Potentially Bad Traffic",
+    "severity": 2,
+    "metadata": {
+      "confidence": [
+        "Medium"
+      ],
+      "created_at": [
+        "2010_07_30"
+      ],
+      "signature_severity": [
+        "Informational"
+      ],
+      "updated_at": [
+        "2019_07_26"
+      ]
+    }
+  },
+  "flow": {
+    "pkts_toserver": 1,
+    "pkts_toclient": 0,
+    "bytes_toserver": 60,
+    "bytes_toclient": 0,
+    "start": "2026-11-01T16:14:16.919013+0200"
+  }
+}
+{
+  "timestamp": "2026-11-01T16:14:17.019246+0200",
+  "flow_id": 655533496945454,
+  "in_iface": "ens33",
+  "event_type": "alert",
+  "src_ip": "192.168.50.40",
+  "src_port": 56129,
+  "dest_ip": "192.168.50.20",
+  "dest_port": 5432,
+  "proto": "TCP",
+  "alert": {
+    "action": "allowed",
+    "gid": 1,
+    "signature_id": 2010939,
+    "rev": 3,
+    "signature": "ET SCAN Suspicious inbound to PostgreSQL port 5432",
+    "category": "Potentially Bad Traffic",
+    "severity": 2,
+    "metadata": {
+      "confidence": [
+        "Medium"
+      ],
+      "created_at": [
+        "2010_07_30"
+      ],
+      "signature_severity": [
+        "Informational"
+      ],
+      "updated_at": [
+        "2019_07_26"
+      ]
+    }
+  },
+  "flow": {
+    "pkts_toserver": 1,
+    "pkts_toclient": 0,
+    "bytes_toserver": 60,
+    "bytes_toclient": 0,
+    "start": "2026-11-01T16:14:17.019246+0200"
+  }
+}
