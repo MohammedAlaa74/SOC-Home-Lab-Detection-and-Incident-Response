@@ -1,0 +1,6 @@
+<!-- Sanitized Wazuh 4.x command declaration -->
+<command>
+  <name>soc-firewall-drop</name>
+  <executable>soc-firewall-drop.py</executable>
+  <timeout_allowed>yes</timeout_allowed>
+</command>
