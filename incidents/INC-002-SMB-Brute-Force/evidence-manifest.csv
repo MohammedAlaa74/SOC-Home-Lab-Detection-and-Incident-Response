@@ -1,0 +1,7 @@
+Evidence ID,Filename,Description,Source,Status
+INC002-LOG-01,correlation-alert-110503.json,Sanitized Wazuh correlation alert for rule 110503,Wazuh alerts index,Committed
+INC002-RULE-01,rule-110503.xml,Custom Wazuh rule configuration,Local rules configuration,Committed
+INC002-SC-01,Screenshot_01_Failed_Logons.png,Failed logon event list (Event ID 4625),PC01 Security log,Pending Upload
+INC002-SC-02,Screenshot_02_Event_Details.png,Event details including source and authentication status,PC01 Security log,Pending Upload
+INC002-SC-03,Screenshot_03_Correlation_110503.png,Wazuh correlation alert showing rule 110503 and threshold,Wazuh Dashboard,Pending Upload
+INC002-SC-04,Screenshot_04_Account_Context.png,Account context relevant to the test account,PC01 / Active Directory,Pending Upload
