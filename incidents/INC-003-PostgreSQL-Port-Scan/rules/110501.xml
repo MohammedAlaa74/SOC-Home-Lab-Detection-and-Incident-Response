@@ -1,0 +1,9 @@
+<rule id="110501" level="8">
+    <if_sid>86601</if_sid>
+    <field name="alert.signature">^ET SCAN Suspicious inbound to PostgreSQL port 5432</field>
+    <description>SOC: Suricata detected PostgreSQL port scan from $(src_ip) to $(dest_ip)</description>
+    <mitre>
+      <id>T1046</id>
+    </mitre>
+    <group>soc_detection,network_scanning,suricata,mitre_discovery,</group>
+  </rule>
