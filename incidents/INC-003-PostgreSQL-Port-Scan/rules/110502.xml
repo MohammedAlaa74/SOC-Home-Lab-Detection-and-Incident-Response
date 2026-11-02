@@ -1,0 +1,9 @@
+<rule id="110502" level="10" frequency="3" timeframe="60">
+    <if_matched_sid>110501</if_matched_sid>
+    <same_field>src_ip</same_field>
+    <description>SOC: High-Confidence PostgreSQL Port Scan - multiple attempts from $(src_ip) within 60 seconds</description>
+    <mitre>
+      <id>T1046</id>
+    </mitre>
+    <group>soc_detection,network_scanning,suricata,mitre_discovery,high_confidence,active_response_trigger,</group>
+  </rule>
