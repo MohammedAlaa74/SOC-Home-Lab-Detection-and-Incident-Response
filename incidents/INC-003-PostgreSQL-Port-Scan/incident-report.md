@@ -10,8 +10,8 @@
 | Severity | To be determined from validated telemetry |
 | Detection source | Suricata integrated with Wazuh |
 | Target service port | TCP/5432 (confirm from event) |
-| Wazuh detection rule | 110501 (validate exact alert) |
-| Wazuh correlation rule | 110502 (validate whether it fired) |
+| Wazuh detection rule | 110501 — level 8 (runtime validation pending) |
+| Wazuh correlation rule | 110502 — level 10, frequency 3, timeframe 60 seconds (runtime validation pending) |
 | MITRE ATT&CK | T1046 — Network Service Discovery |
 
 ## 2. Executive summary
@@ -65,12 +65,12 @@ Use timestamps from the source records. Do not infer missing times.
 ### 5.3 Wazuh rule 110502 correlation
 
 - Did the rule fire? PENDING
-- Frequency / timeframe: PENDING — copy from actual rule configuration
-- Same-field condition: PENDING
-- Number of matched events: PENDING
+- Frequency / timeframe: 3 matches within 60 seconds (from supplied rule; verify live behavior)
+- Same-field condition: `src_ip` (from supplied rule; verify this exact decoded dynamic field exists)
+- Number of matched events: PENDING — rule configuration specifies frequency 3
 - Correlation window: PENDING
 
-Do not invent rule thresholds or descriptions. Attach the exact rule XML used in the lab.
+The supplied XML is stored in `rules/110501.xml` and `rules/110502.xml`. Runtime loading and event-field compatibility are not yet verified. The group label `active_response_trigger` is only a classification tag; it does not, by itself, execute an active response.
 
 ## 6. Analysis
 
