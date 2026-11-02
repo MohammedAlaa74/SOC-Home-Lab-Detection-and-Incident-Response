@@ -1,18 +1,27 @@
 # Log evidence
 
-Place sanitized exports in this directory.
+This directory contains reviewed, sanitized JSON evidence for INC-003.
 
-Expected files:
-- `suricata-event.json`
-- `wazuh-alert-110501.json`
-- `wazuh-alert-110502.json` (only if rule 110502 fired)
+## Files
 
-## Export guidance
+- `suricata-event.json` — four Suricata EVE alert events matching the PostgreSQL port 5432 scan signature.
+- `wazuh-alert-110501.json` — sanitized Wazuh level-8 single-event detection alert.
+- `wazuh-correlation-110502.json` — sanitized Wazuh level-10 correlation alert, including two prior matching events in `previous_output`.
 
-1. Export the complete relevant Suricata event from `eve.json`.
-2. Export the complete matching Wazuh alert object for rule 110501.
-3. Export the correlation alert for rule 110502 only if it exists.
-4. Preserve timestamps, source/destination IPs, ports, protocol, signature/SID, rule IDs, and agent metadata.
-5. Before committing, sanitize any credentials, tokens, public IPs, personal usernames, or sensitive internal naming.
+## Suricata event set
 
-Do not create synthetic alerts to fill a missing evidence slot. If a rule did not fire, state that in the report and manifest.
+The four events are stored as one valid JSON array. Each retains its timestamp, flow ID, interface, source/destination ports, protocol, signature metadata, action, and flow counters.
+
+Private lab IPs are replaced with RFC 5737 documentation addresses in the public repository:
+- Source: `198.51.100.40`
+- Destination: `203.0.113.20`
+
+## Interpretation limits
+
+- The recorded Suricata action is `allowed`; this file does not evidence packet blocking.
+- The events support repeated probing matching the ET SCAN signature. They do not prove PostgreSQL authentication, successful access, exploitation, or compromise.
+- Do not add synthetic events to fill evidence gaps.
+
+## Review
+
+Validate the JSON with `jq empty suricata-event.json` and compare timestamps and event fields with the related Wazuh alert records before using the evidence in a report.
