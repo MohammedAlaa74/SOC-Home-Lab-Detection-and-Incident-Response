@@ -1,87 +1,102 @@
 {
-  "evidence_id": "LOG-03",
-  "sanitization": {
-    "note": "RFC 5737 TEST-NET addresses substituted for private lab IPs for public repository publication.",
-    "source_ip": "198.51.100.40",
-    "destination_ip": "203.0.113.20"
-  },
-  "index": "wazuh-alerts-4.x-2026.11.01",
-  "alert_id": "1793542458.6544817",
-  "timestamp": "2026-11-01T16:14:18.696+0200",
-  "data_timestamp": "2026-11-01T16:14:17.019246+0200",
-  "agent": {
-    "id": "000",
-    "name": "wazuh"
-  },
-  "manager": {
-    "name": "wazuh"
-  },
-  "data": {
-    "in_iface": "ens33",
-    "src_ip": "198.51.100.40",
-    "src_port": "56129",
-    "event_type": "alert",
-    "dest_ip": "203.0.113.20",
-    "dest_port": "5432",
-    "proto": "TCP",
-    "alert": {
-      "severity": "2",
-      "signature_id": "2010939",
-      "rev": "3",
-      "gid": "1",
-      "signature": "ET SCAN Suspicious inbound to PostgreSQL port 5432",
-      "action": "allowed",
-      "category": "Potentially Bad Traffic",
-      "metadata": {
-        "confidence": [
-          "Medium"
-        ],
-        "signature_severity": [
-          "Informational"
-        ],
-        "created_at": [
-          "2010_07_30"
-        ],
-        "updated_at": [
-          "2019_07_26"
-        ]
-      }
+  "_index": "wazuh-alerts-4.x-2026.11.01",
+  "_id": "GCl2l6EB8YwcPp_rIAMP",
+  "_score": null,
+  "_source": {
+    "input": {
+      "type": "log"
     },
-    "flow": {
-      "pkts_toserver": "1",
-      "pkts_toclient": "0",
-      "bytes_toserver": "60",
-      "bytes_toclient": "0",
-      "start": "2026-11-01T16:14:17.019246+0200"
-    }
+    "agent": {
+      "name": "wazuh",
+      "id": "000"
+    },
+    "manager": {
+      "name": "wazuh"
+    },
+    "data": {
+      "in_iface": "ens33",
+      "src_ip": "192.168.50.40",
+      "src_port": "56129",
+      "event_type": "alert",
+      "alert": {
+        "severity": "2",
+        "signature_id": "2010939",
+        "rev": "3",
+        "metadata": {
+          "updated_at": [
+            "2019_07_26"
+          ],
+          "confidence": [
+            "Medium"
+          ],
+          "created_at": [
+            "2010_07_30"
+          ],
+          "signature_severity": [
+            "Informational"
+          ]
+        },
+        "gid": "1",
+        "signature": "ET SCAN Suspicious inbound to PostgreSQL port 5432",
+        "action": "allowed",
+        "category": "Potentially Bad Traffic"
+      },
+      "flow_id": "655533496945454.000000",
+      "dest_ip": "192.168.50.20",
+      "proto": "TCP",
+      "dest_port": "5432",
+      "flow": {
+        "pkts_toserver": "1",
+        "start": "2026-11-01T16:14:17.019246+0200",
+        "bytes_toclient": "0",
+        "bytes_toserver": "60",
+        "pkts_toclient": "0"
+      },
+      "timestamp": "2026-11-01T16:14:17.019246+0200"
+    },
+    "rule": {
+      "firedtimes": 5,
+      "mail": false,
+      "level": 8,
+      "description": "SOC: Suricata detected PostgreSQL port scan from 192.168.50.40 to 192.168.50.20",
+      "groups": [
+        "local",
+        "soc_custom_rules",
+        "soc_detection",
+        "network_scanning",
+        "suricata",
+        "mitre_discovery"
+      ],
+      "mitre": {
+        "technique": [
+          "Network Service Discovery"
+        ],
+        "id": [
+          "T1046"
+        ],
+        "tactic": [
+          "Discovery"
+        ]
+      },
+      "id": "110501"
+    },
+    "location": "/var/log/suricata/eve.json",
+    "decoder": {
+      "name": "json"
+    },
+    "id": "1793542458.6544817",
+    "full_log": "{\"timestamp\":\"2026-11-01T16:14:17.019246+0200\",\"flow_id\":655533496945454,\"in_iface\":\"ens33\",\"event_type\":\"alert\",\"src_ip\":\"192.168.50.40\",\"src_port\":56129,\"dest_ip\":\"192.168.50.20\",\"dest_port\":5432,\"proto\":\"TCP\",\"alert\":{\"action\":\"allowed\",\"gid\":1,\"signature_id\":2010939,\"rev\":3,\"signature\":\"ET SCAN Suspicious inbound to PostgreSQL port 5432\",\"category\":\"Potentially Bad Traffic\",\"severity\":2,\"metadata\":{\"confidence\":[\"Medium\"],\"created_at\":[\"2010_07_30\"],\"signature_severity\":[\"Informational\"],\"updated_at\":[\"2019_07_26\"]}},\"flow\":{\"pkts_toserver\":1,\"pkts_toclient\":0,\"bytes_toserver\":60,\"bytes_toclient\":0,\"start\":\"2026-11-01T16:14:17.019246+0200\"}}",
+    "timestamp": "2026-11-01T16:14:18.696+0200"
   },
-  "rule": {
-    "id": "110501",
-    "level": 8,
-    "firedtimes": 5,
-    "description": "SOC: Suricata detected PostgreSQL port scan from sanitized source to sanitized destination",
-    "groups": [
-      "local",
-      "soc_custom_rules",
-      "soc_detection",
-      "network_scanning",
-      "suricata",
-      "mitre_discovery"
+  "fields": {
+    "timestamp": [
+      "2026-11-01T14:14:18.696Z"
     ],
-    "mitre": {
-      "technique": [
-        "Network Service Discovery"
-      ],
-      "id": [
-        "T1046"
-      ],
-      "tactic": [
-        "Discovery"
-      ]
-    }
+    "data.timestamp": [
+      "2026-11-01T14:14:17.019Z"
+    ]
   },
-  "location": "/var/log/suricata/eve.json",
-  "decoder": {
-    "name": "json"
-  }
+  "sort": [
+    1793542458696
+  ]
 }
