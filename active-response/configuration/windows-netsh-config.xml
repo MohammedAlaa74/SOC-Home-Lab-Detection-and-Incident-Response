@@ -1,4 +1,4 @@
-<!-- Sanitized dispatch configuration only; not proof of endpoint containment. -->
+
 <active-response>
   <disabled>no</disabled>
   <command>netsh</command>
