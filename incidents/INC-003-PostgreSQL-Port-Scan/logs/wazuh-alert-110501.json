@@ -1,0 +1,87 @@
+{
+  "evidence_id": "LOG-03",
+  "sanitization": {
+    "note": "RFC 5737 TEST-NET addresses substituted for private lab IPs for public repository publication.",
+    "source_ip": "198.51.100.40",
+    "destination_ip": "203.0.113.20"
+  },
+  "index": "wazuh-alerts-4.x-2026.11.01",
+  "alert_id": "1793542458.6544817",
+  "timestamp": "2026-11-01T16:14:18.696+0200",
+  "data_timestamp": "2026-11-01T16:14:17.019246+0200",
+  "agent": {
+    "id": "000",
+    "name": "wazuh"
+  },
+  "manager": {
+    "name": "wazuh"
+  },
+  "data": {
+    "in_iface": "ens33",
+    "src_ip": "198.51.100.40",
+    "src_port": "56129",
+    "event_type": "alert",
+    "dest_ip": "203.0.113.20",
+    "dest_port": "5432",
+    "proto": "TCP",
+    "alert": {
+      "severity": "2",
+      "signature_id": "2010939",
+      "rev": "3",
+      "gid": "1",
+      "signature": "ET SCAN Suspicious inbound to PostgreSQL port 5432",
+      "action": "allowed",
+      "category": "Potentially Bad Traffic",
+      "metadata": {
+        "confidence": [
+          "Medium"
+        ],
+        "signature_severity": [
+          "Informational"
+        ],
+        "created_at": [
+          "2010_07_30"
+        ],
+        "updated_at": [
+          "2019_07_26"
+        ]
+      }
+    },
+    "flow": {
+      "pkts_toserver": "1",
+      "pkts_toclient": "0",
+      "bytes_toserver": "60",
+      "bytes_toclient": "0",
+      "start": "2026-11-01T16:14:17.019246+0200"
+    }
+  },
+  "rule": {
+    "id": "110501",
+    "level": 8,
+    "firedtimes": 5,
+    "description": "SOC: Suricata detected PostgreSQL port scan from sanitized source to sanitized destination",
+    "groups": [
+      "local",
+      "soc_custom_rules",
+      "soc_detection",
+      "network_scanning",
+      "suricata",
+      "mitre_discovery"
+    ],
+    "mitre": {
+      "technique": [
+        "Network Service Discovery"
+      ],
+      "id": [
+        "T1046"
+      ],
+      "tactic": [
+        "Discovery"
+      ]
+    }
+  },
+  "location": "/var/log/suricata/eve.json",
+  "decoder": {
+    "name": "json"
+  }
+}
