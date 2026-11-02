@@ -1,0 +1,56 @@
+{
+  "case_id": "INC-002",
+  "evidence_type": "wazuh_correlation_alert",
+  "index": "wazuh-alerts-4.x-2026.11.01",
+  "alert_id": "1793542600.6697849",
+  "timestamp": "2026-11-01T16:16:40.237+0200",
+  "agent": {
+    "name": "PC01",
+    "id": "002",
+    "ip": "192.168.50.20"
+  },
+  "rule": {
+    "id": "110503",
+    "level": 10,
+    "description": "SOC: Possible Brute Force - 5 failed logons from same source IP within 120 seconds",
+    "frequency": 5,
+    "timeframe_seconds": 120,
+    "firedtimes": 1,
+    "mitre": {
+      "tactic": "Credential Access",
+      "technique": "T1110",
+      "name": "Brute Force"
+    },
+    "groups": [
+      "soc_custom_rules",
+      "soc_detection",
+      "authentication_failed",
+      "brute_force",
+      "high_confidence"
+    ]
+  },
+  "correlated_event": {
+    "event_id": 4625,
+    "event_record_id": "82856",
+    "event_time_utc": "2026-11-01T14:16:40.1331925Z",
+    "logon_type": 3,
+    "logon_type_name": "Network",
+    "source_ip": "192.168.50.40",
+    "source_host": "KALI-ATTACKER",
+    "target_host": "PC01",
+    "target_account": "soc_invalid_user",
+    "authentication_package": "NTLM",
+    "logon_process": "NtLmSsp",
+    "status": "0xc000006d",
+    "sub_status": "0xc0000064",
+    "source_port": "47074"
+  },
+  "correlation_summary": {
+    "matching_failed_logons": 5,
+    "observed_window_seconds": 13,
+    "configured_window_seconds": 120,
+    "same_source_ip": true,
+    "same_field": "win.eventdata.ipAddress"
+  },
+  "interpretation": "Five failed network logons from the same source IP were correlated by Wazuh within the configured 120-second window. The target account was reported as an unknown user (SubStatus 0xc0000064); this alert supports repeated authentication failure and possible brute-force activity, but does not by itself prove password guessing against a valid account."
+}
