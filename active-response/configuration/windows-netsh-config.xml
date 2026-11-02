@@ -1,0 +1,26 @@
+<!-- Sanitized dispatch configuration only; not proof of endpoint containment. -->
+<active-response>
+  <disabled>no</disabled>
+  <command>netsh</command>
+  <location>defined-agent</location>
+  <agent_id>001</agent_id>
+  <rules_id>110502</rules_id>
+  <timeout>600</timeout>
+</active-response>
+
+<active-response>
+  <disabled>no</disabled>
+  <command>netsh</command>
+  <location>defined-agent</location>
+  <agent_id>002</agent_id>
+  <rules_id>110502</rules_id>
+  <timeout>600</timeout>
+</active-response>
+
+<active-response>
+  <disabled>no</disabled>
+  <command>netsh</command>
+  <location>local</location>
+  <rules_id>110503</rules_id>
+  <timeout>600</timeout>
+</active-response>
