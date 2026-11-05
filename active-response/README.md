@@ -1,50 +1,63 @@
 # Wazuh Active Response
 
-This section documents the Active Response implementation in the SOC home lab. It separates manager-side execution evidence from endpoint-side containment claims.
+This section documents the Active Response implementation and separates manager-side execution from endpoint firewall-state observations.
 
-## Confirmed manager-side configuration
+## Manager-side configuration
 
 - Custom command: `soc-firewall-drop`
 - Executable: `soc-firewall-drop.py`
-- Manager-side location: `server`
+- Execution location: Wazuh manager (`server`)
 - Triggering rules: `110502` and `110503`
 - Timeout: 600 seconds
-- Script SHA256 observed on the manager: `951374b7dc8c4471769c9c619d6fbbe8a7941fc07009777381911a29b0807b91`
+- Recorded deployed-script SHA-256: `951374b7dc8c4471769c9c619d6fbbe8a7941fc07009777381911a29b0807b91`
 
-## Lab-side observations
+The recorded hash is a host observation. The repository source has not been independently re-hashed against the deployed host binary in this review; do not claim byte-for-byte provenance until compared.
 
-The manager's `active-responses.log` excerpts show repeated `add` / `BLOCKED` and `delete` / `UNBLOCKED` log sequences for source `192.168.50.40`.
+## Linux manager-side execution evidence
 
-This supports the manager-side script execution and logging path. Firewall-state evidence from `iptables` / `ip6tables` during and after the timeout is still needed to independently verify kernel firewall state.
+The supplied `/var/ossec/logs/active-responses.log` excerpts show `RECEIVED add`, `SOURCE`, `BLOCKED`, then `RECEIVED delete`, `SOURCE`, and `UNBLOCKED` for `192.168.50.40`.
 
-## Windows response status
+Observed 2026-11-05 cycles:
+- 19:04:23.372201 to 19:14:24.942738 — approximately 601.57 seconds.
+- 19:16:13.850047 to 19:26:14.440197 — approximately 600.59 seconds.
 
-The manager configuration defines `netsh` response entries for DC01 (agent 001), PC01 (agent 002), and a local response for rule 110503. These are dispatch declarations, not proof that Windows Firewall was changed.
+These entries support the manager script lifecycle and approximately 600-second timeout behavior. Earlier lab evidence also showed the script-owned IPv4 DROP entry while active. The manager log demonstrates script lifecycle; firewall-table output demonstrates kernel rule state. Keep these as separate evidence records.
 
-The Linux manager logs include notices that `netsh.exe` is not present on the Linux manager. This is expected for a Windows executable on Linux and does not establish endpoint success or failure. Windows endpoint-side logs and before/after firewall-rule evidence are still required.
+## Windows firewall-state observations
 
-## Script source review
+PowerShell captures show inbound and outbound BLOCK rules for `192.168.50.40` in an earlier query and no matching rule in a later query. The lab owner identified the two endpoint observations as DC01 and PC01.
 
-- `scripts/soc-firewall-drop.py` is now committed from the complete source pasted for review.
-- The manager SHA256 recorded from the host remains `951374b7dc8c4471769c9c619d6fbbe8a7941fc07009777381911a29b0807b91`. The pasted chat text was not byte-for-byte hashed against the host file, so this repository commit must not be represented as cryptographically verified to match that host hash until `sha256sum` is checked again on the host.
-- The script implements the Wazuh 4.x `add` / `delete` protocol and the `check_keys` handshake on `add`. Wazuh documentation confirms this handshake is required for stateful timeout/reversal.
-- Review note: `find_source()` recursively accepts several generic IP field names, including `ipAddress`; before production use, narrow extraction to the actual Wazuh alert source-IP fields used by rules 110502/110503 so a destination or unrelated nested IP cannot be selected accidentally.
-- Review note: `COMMENT` is fixed to `WAZUH_AR_110502` although the command is attached to both rules 110502 and 110503. This is not itself a failure, but the comment should be renamed to a neutral identifier (for example `WAZUH_AR_SOC_FIREWALL_DROP`) if you want firewall-state evidence to clearly identify blocks from both triggers.
+This establishes endpoint firewall state at the observed times. It does not independently prove which Wazuh alert, response executable, or endpoint-side process created and removed each rule. Add endpoint-side Active Response logs if exact execution attribution is required.
+
+## Dispatch configuration versus execution evidence
+
+The sanitized manager configuration declares:
+- `netsh` response for DC01 (agent 001) on rule 110502.
+- `netsh` response for PC01 (agent 002) on rule 110502.
+- Local `netsh` response for rules 110503 and 110504.
+
+These are configuration declarations, not proof of successful execution. A Linux manager message that `netsh.exe` is unavailable refers to the manager's local executable inventory; it does not prove that the Windows agent failed.
+
+## Script review notes
+
+- The script implements the Wazuh 4.x `add` / `delete` protocol and `check_keys` handshake on `add`.
+- `find_source()` recursively accepts generic IP field names. Before use beyond this isolated lab, constrain extraction to the exact source-IP fields in the relevant alert formats.
+- The firewall comment is `WAZUH_AR_110502` even though the command is attached to both rules 110502 and 110503. This is semantically misleading, though not by itself proof of a functional failure. Change it only in a separately reviewed and validated script revision.
+- Do not modify the deployed script solely for cosmetic cleanup.
 
 ## Repository contents
 
 - `configuration/command-config.xml`: sanitized command declaration.
-- `configuration/active-response-config.xml`: manager-side response blocks for rules 110502 and 110503.
+- `configuration/active-response-config.xml`: manager-side response blocks.
 - `configuration/windows-netsh-config.xml`: sanitized Windows dispatch declarations.
-- `docs/validation.md`: observed results, script hash, and limitations.
+- `docs/validation.md`: observed outcomes and limitations.
 - `docs/test-plan.md`: repeatable validation checklist.
-- `evidence-manifest.csv`: evidence inventory and status.
+- `evidence-manifest.csv`: evidence inventory.
 
-## Remaining items
+## Evidence still open
 
-1. Re-run `sha256sum /var/ossec/active-response/bin/soc-firewall-drop.py` on the manager and compare it with the recorded hash above; then compare the deployed file with the committed source if byte-for-byte provenance is required.
-2. Add Linux firewall-state evidence while blocked and after timeout.
-3. Add PC01 and DC01 endpoint-side response logs and Windows Firewall before/after evidence.
-4. Review screenshots and mark manifest entries PASS only when their contents support the claim.
+1. Upload the reviewed 2026-11-05 screenshots under `evidence/` and update the manifest with exact filenames.
+2. Add endpoint Active Response execution logs if precise Windows dispatch attribution is needed.
+3. Reconfirm deployed-script SHA-256 against the repository source if provenance is claimed.
 
 Never commit the full `ossec.conf`, Slack webhook URLs, tokens, passwords, private keys, or unredacted raw logs.
