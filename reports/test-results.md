@@ -42,3 +42,15 @@ The Windows firewall queries demonstrate endpoint state at the observation times
 - Record exact rule IDs, event IDs, timestamps, agent IDs, and ATT&CK mappings from actual output.
 - Do not claim containment unless endpoint or network control results are independently verified.
 - Keep detection evidence and Active Response evidence in separate records.
+
+
+## Additional evidence reviewed on 2026-11-05
+
+| Screenshot | Observation | Evidence classification |
+|---|---|---|
+| `Screenshot 2026-11-05 192446.png` | Wazuh Discover search for `rule.id:"110503"` returns 3 hits; visible Windows Security 4625 events include DC01 agent 001 and PC01 agent 002. | Detection evidence for INC-002 / 110503. |
+| `Screenshot 2026-11-05 193108.png` | Inbound and outbound Windows Firewall BLOCK rules for 192.168.50.40 are present in the first query and absent in the later query. | Endpoint firewall-state observation. |
+| `Screenshot 2026-11-05 193133.png` | Inbound and outbound Windows Firewall BLOCK rules for 192.168.50.40 are present in the first query and absent in the later query. | Endpoint firewall-state observation. |
+| `Screenshot 2026-11-05 193355.png` | Ubuntu manager log shows ADD/BLOCKED and DELETE/UNBLOCKED. PC01-associated sequence: 19:04:23 to 19:14:24; DC01-associated sequence: 19:16:13 to 19:26:14. | Linux manager-side Active Response lifecycle; intervals are approximately 600 seconds. |
+
+**Repository attachment status:** These four screenshot files were reviewed from the conversation but their binary files are not yet present in the Git repository. Do not treat the filenames in this register as repository image links.
