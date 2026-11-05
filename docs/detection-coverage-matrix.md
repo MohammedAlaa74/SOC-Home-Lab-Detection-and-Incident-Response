@@ -2,7 +2,7 @@
 
 **Version:** 1.0  
 **Baseline date:** 2026-11-05  
-**Status:** Baseline published; four custom detections remain pending technical validation.
+**Status:** Baseline v1.0 — three custom detections runtime evidenced (110501, 110502, 110503); four custom detections remain pending technical validation (100421, 110504, 110510, 110520).
 
 This matrix separates detection evidence from response evidence. A rule's presence in XML is configuration evidence, not proof of runtime detection.
 
@@ -72,13 +72,13 @@ Only claims supported by the reviewed repository artifacts and supplied lab obse
 
 ## 8. Additional screenshot evidence reviewed — 2026-11-05
 
-The following screenshots were supplied in the project conversation and reviewed. They are recorded here by original filename so the evidence can be staged into the repository without changing the underlying claims. **The image binaries themselves have not been committed to this repository in this update.**
+The following screenshots were supplied in the project conversation and reviewed. They are recorded here by original filename so the owner can upload them. **The image binaries themselves are intentionally not committed yet.**
 
 | Screenshot filename | Evidence shown | Supports |
 |---|---|---|
 | `Screenshot 2026-11-05 192446.png` | Wazuh Discover query `rule.id:"110503"`, three hits, including Windows Security Event ID 4625 records from DC01 (agent 001) and PC01 (agent 002). | INC-002 / rule 110503 runtime alert evidence. |
-| `Screenshot 2026-11-05 193108.png` | Windows Firewall rule query showing inbound and outbound BLOCK rules for 192.168.50.40, followed by a query with no matching rule. | Windows endpoint firewall-state before/after observation; endpoint identity must be stated in the incident evidence caption. |
-| `Screenshot 2026-11-05 193133.png` | Windows Firewall rule query showing inbound and outbound BLOCK rules for 192.168.50.40, followed by a no-match result. | Windows endpoint firewall-state before/after observation; endpoint identity must be stated in the incident evidence caption. |
+| `Screenshot 2026-11-05 193108.png` | Windows Firewall rule query showing inbound and outbound BLOCK rules for 192.168.50.40, followed by a query with no matching rule. | Windows endpoint firewall-state before/after observation; label the endpoint from the original capture. |
+| `Screenshot 2026-11-05 193133.png` | Windows Firewall rule query showing inbound and outbound BLOCK rules for 192.168.50.40, followed by a no-match result. | Windows endpoint firewall-state before/after observation; label the endpoint from the original capture. |
 | `Screenshot 2026-11-05 193355.png` | Ubuntu `soc-firewall-drop` log showing ADD/BLOCKED and DELETE/UNBLOCKED for 192.168.50.40, including 19:04:23→19:14:24 and 19:16:13→19:26:14 cycles. | Manager-side Linux Active Response lifecycle and approximately 600-second interval. |
 
 These screenshot observations supplement, but do not replace, raw event records and endpoint Active Response execution logs. In particular, Ubuntu script logs do not prove Windows `netsh` execution attribution.
