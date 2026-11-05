@@ -54,3 +54,8 @@ The Windows firewall queries demonstrate endpoint state at the observation times
 | `Screenshot 2026-11-05 193355.png` | Ubuntu manager log shows ADD/BLOCKED and DELETE/UNBLOCKED. PC01-associated sequence: 19:04:23 to 19:14:24; DC01-associated sequence: 19:16:13 to 19:26:14. | Linux manager-side Active Response lifecycle; intervals are approximately 600 seconds. |
 
 **Repository attachment status:** These four screenshot files were reviewed from the conversation but their binary files are not yet present in the Git repository. Do not treat the filenames in this register as repository image links.
+
+
+## Final review
+
+The consolidated repository review, evidence boundaries, and screenshot upload paths are documented in [project-final-review.md](project-final-review.md).
