@@ -107,4 +107,9 @@ GitHub: [@MohammedAlaa74](https://github.com/MohammedAlaa74)
 
 ### Additional evidence reviewed (2026-11-05)
 
-Four screenshots were reviewed for INC-002 and Active Response: Wazuh rule 110503 Discover results, Windows Firewall before/after queries, and Ubuntu ADD/DELETE logs. Their original filenames and evidence descriptions are recorded in [the test results register](reports/test-results.md) and [the Detection Coverage Matrix](docs/detection-coverage-matrix.md). The screenshot binaries are not yet committed to the repository.
+Four screenshots were reviewed for INC-002 and Active Response: Wazuh rule 110503 Discover results, Windows Firewall before/after queries, and Ubuntu ADD/DELETE logs. Their original filenames and evidence descriptions are recorded in [the test results register](reports/test-results.md) and [the Detection Coverage Matrix](docs/detection-coverage-matrix.md). The screenshot binaries are intentionally left for the repository owner to upload. See [Final Project Review](reports/project-final-review.md) for the final evidence inventory, repository structure, and outstanding technical validation items.
+
+
+## Final project review
+
+See [reports/project-final-review.md](reports/project-final-review.md) for the consolidated review, evidence boundaries, and screenshot upload checklist.
