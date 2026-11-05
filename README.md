@@ -103,3 +103,8 @@ GitHub: [@MohammedAlaa74](https://github.com/MohammedAlaa74)
 ---
 
 *This repository is a learning and portfolio project. All security testing is performed in an authorized, isolated lab environment.*
+
+
+### Additional evidence reviewed (2026-11-05)
+
+Four screenshots were reviewed for INC-002 and Active Response: Wazuh rule 110503 Discover results, Windows Firewall before/after queries, and Ubuntu ADD/DELETE logs. Their original filenames and evidence descriptions are recorded in [the test results register](reports/test-results.md) and [the Detection Coverage Matrix](docs/detection-coverage-matrix.md). The screenshot binaries are not yet committed to the repository.
