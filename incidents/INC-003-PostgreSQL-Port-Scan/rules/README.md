@@ -1,24 +1,19 @@
-# Wazuh rule configuration
+# Confirmed Wazuh rule artifacts
 
-The following XML files were added from the rule definitions supplied for this lab:
+The XML files in this directory are the custom detection rules evidenced in INC-003:
 
-- `110501.xml` — Suricata PostgreSQL scan detection, level 8.
-- `110502.xml` — correlation rule, level 10; frequency 3 within 60 seconds, requiring the same dynamic `src_ip` field.
+- `110501.xml` — Suricata PostgreSQL port-scan detection, Level 8, matching the PostgreSQL signature from the Suricata event.
+- `110502.xml` — correlation rule, Level 10; three matching events within 60 seconds, grouped by the same dynamic `src_ip`.
 
-## Validation still required
+## Runtime evidence
 
-These files represent the supplied configuration. They are **not yet proof that the rules are loaded or have fired successfully**.
+- INC-003 includes the Suricata event, Wazuh alert for rule 110501, and correlation alert for rule 110502.
+- The correlation alert's `previous_output` contains two prior matching events in addition to the current event.
+- The three events share the same source address and fall within the configured 60-second window.
+- This is runtime evidence that the documented Suricata event path exposed the fields required by these two rules.
 
-Before marking them validated:
-1. Confirm these exact rules are present in the active Wazuh manager configuration.
-2. Confirm rule 86601 is the parent rule that matches the Suricata event in this environment.
-3. Confirm the decoded alert contains `alert.signature`, `src_ip`, and `dest_ip` with the expected names and values.
-4. Run Wazuh log testing with a representative Suricata event.
-5. Generate at least three matching events from the same `src_ip` within 60 seconds and verify rule 110502.
-6. Check the manager logs and `alerts.json` for actual rule matches.
+## Scope
 
-## Important implementation note
+These rule artifacts and incident records demonstrate detection and correlation. They do not demonstrate successful PostgreSQL access, exploitation, compromise, or firewall containment.
 
-The `same_field` condition works with a dynamic field. It must use the exact decoded field name. If the Suricata decoder exposes the source address under a different name (for example, a nested JSON field), adjust the rule only after inspecting the actual decoded event. Do not assume `src_ip` is correct without checking the event.
-
-Rule 110502 carries the `active_response_trigger` group label. That label alone does **not** execute an active response. A matching active-response command and configuration must exist separately, and containment must be verified independently.
+The `active_response_trigger` group label on rule 110502 does not itself execute an Active Response command. Response configuration and execution evidence are documented separately under [Active Response](../../../active-response/README.md).
