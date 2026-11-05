@@ -7,10 +7,14 @@ This register records only the three documented incident scenarios with supporti
 | Scenario | Test / event reference | Endpoint / source | Observed detection | Status |
 |---|---|---|---|---|
 | Encoded PowerShell execution | Atomic Red Team T1059.001 Test 17; Sysmon Event ID 1 | PC01 / agent 002 | Built-in Wazuh rule 92057, Level 12 | Runtime evidenced — INC-001 |
-| Repeated Windows network logon failures | Windows Security Event ID 4625; Logon Type 3 | PC01 / source 192.168.50.40 | Custom Wazuh rule 110503, Level 10; five failures within 120 seconds | Runtime evidenced — INC-002 |
+| Windows network logon failures / possible brute force | Five Windows Security Event ID 4625 failures; Logon Type 3; 2026-11-01 16:16:27–16:16:40 UTC+02:00 | PC01 / agent 002 / source 192.168.50.40 (KALI-ATTACKER) | Custom Wazuh rule 110503, Level 10; five same-source failures in approximately 13 seconds, within 120 seconds | Runtime evidenced — INC-002 |
 | PostgreSQL port scan | Suricata ET SCAN signature SID 2010939 | Suricata sensor / TCP 5432 | Custom Wazuh rule 110501, followed by correlation rule 110502; three same-source events within 60 seconds | Runtime evidenced — INC-003 |
 
 The published custom detection baseline is limited to rules 110501, 110502, and 110503. Built-in rule 92057 is listed separately and is not a custom rule.
+
+### INC-002 interpretation
+
+The representative event (Record ID `82856`) identifies target account `soc_invalid_user`, NTLM authentication, Status `0xc000006d`, and SubStatus `0xc0000064` (unknown user name). The defensible conclusion is repeated failed network authentication / possible brute-force activity. Logon Type 3 does not independently prove SMB, and the evidence does not establish a successful login, valid-account password guessing, or compromise.
 
 ## Active Response observations
 
@@ -27,7 +31,7 @@ The Windows firewall queries demonstrate endpoint state at the observation times
 
 | Screenshot | Observation | Evidence classification |
 |---|---|---|
-| `Screenshot 2026-11-05 192446.png` | Wazuh Discover search for `rule.id:"110503"` returns 3 hits; visible Windows Security 4625 events include DC01 agent 001 and PC01 agent 002. | Detection evidence for INC-002 / 110503. |
+| `Screenshot 2026-11-05 192446.png` | Wazuh Discover search for `rule.id:"110503"` returns 3 hits; visible Windows Security 4625 events include DC01 agent 001 and PC01 agent 002. | Additional detection evidence for INC-002 / 110503. The 3 visible hits are not the original five-event count; the separate sanitized correlation alert records five matching failures. |
 | `Screenshot 2026-11-05 193108.png` | Inbound and outbound Windows Firewall BLOCK rules for 192.168.50.40 are present in the first query and absent in the later query. | Endpoint firewall-state observation. |
 | `Screenshot 2026-11-05 193133.png` | Inbound and outbound Windows Firewall BLOCK rules for 192.168.50.40 are present in the first query and absent in the later query. | Endpoint firewall-state observation. |
 | `Screenshot 2026-11-05 193355.png` | Ubuntu manager log shows ADD/BLOCKED and DELETE/UNBLOCKED. PC01-associated sequence: 19:04:23 to 19:14:24; DC01-associated sequence: 19:16:13 to 19:26:14. | Linux manager-side Active Response lifecycle; intervals are approximately 600 seconds. |
