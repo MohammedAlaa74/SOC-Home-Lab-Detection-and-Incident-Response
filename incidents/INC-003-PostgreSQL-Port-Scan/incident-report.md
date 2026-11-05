@@ -6,7 +6,7 @@
 |---|---|
 | Incident ID | INC-003 |
 | Title | Suspected PostgreSQL Port Scan |
-| Status | Detection and correlation evidenced; screenshots pending |
+| Status | Detection and correlation evidenced; incident screenshots committed |
 | Severity | Wazuh correlation alert level 10 |
 | Detection source | Suricata integrated with Wazuh |
 | Target service port | TCP/5432 |
