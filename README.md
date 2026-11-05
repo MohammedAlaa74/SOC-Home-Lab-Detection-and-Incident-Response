@@ -39,11 +39,13 @@ A controlled Atomic Red Team T1059.001 Test 17 was executed locally on PC01. Sys
 - **Response:** No containment is claimed.
 - [Incident report](incidents/INC-001-PowerShell-Encoded-Command/incident-report.md)
 
-### INC-002 — Repeated Windows network logon failures
+### INC-002 — Windows network logon failures / possible brute force
 
-Windows Security Event ID 4625 records were correlated by custom Wazuh rule **110503** (Level 10), using five matching failures from the same source within 120 seconds.
+On 2026-11-01, five Windows Security Event ID 4625 failures from `192.168.50.40` (`KALI-ATTACKER`) were recorded against PC01 (agent 002) within approximately 13 seconds. Custom Wazuh rule **110503** (Level 10) correlated five failures from the same source within its configured 120-second window.
 
-- **Assessment:** Possible brute force / repeated failed network authentication. Successful authentication or compromise is not established.
+- **Logon type:** 3 (Network); the evidence does not independently establish SMB as the protocol.
+- **Target account:** `soc_invalid_user`; SubStatus `0xc0000064` indicates an unknown user name.
+- **Assessment:** Possible brute-force activity / repeated failed network authentication. Successful authentication, valid-account password guessing, and compromise are not established.
 - [Incident report](incidents/INC-002-SMB-Brute-Force/incident-report.md)
 
 ### INC-003 — PostgreSQL port scan
@@ -88,7 +90,7 @@ The [Active Response documentation](active-response/README.md) records the Linux
 ## Project status
 
 - [x] INC-001 encoded PowerShell detection documented.
-- [x] INC-002 Windows failed-logon correlation documented.
+- [x] INC-002 Windows network logon failures / possible-brute-force detection documented with five-event correlation evidence.
 - [x] INC-003 PostgreSQL scan detection and correlation documented.
 - [x] Evidence-based Detection Coverage Matrix limited to runtime-evidenced detections.
 - [x] Linux Active Response ADD / DELETE lifecycle observed.
